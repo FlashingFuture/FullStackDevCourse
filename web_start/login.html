@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h1>로그인</h1>
+      <form onsubmit="login(event)">
+        <div class="input_box">
+          <label for="userId" class="login_label">ID</label>
+          <input class="login_input" type="text" id="userId" />
+        </div>
+        <div class="input_box">
+          <label for="userPw" class="login_label">PW</label>
+          <input class="login_input" type="password" id="userPw" />
+        </div>
+        <div>
+          <input id="login_button" type="submit" value="로그인" />
+        </div>
+      </form>
+    </div>
+    <script src="login.js"></script>
+  </body>
+</html>
