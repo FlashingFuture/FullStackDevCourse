@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const conn = require("../mariadb");
+const jwt = require("jsonwebtoken");
+const { signToken } = require("../utils/jwt");
+
 router.use(express.json());
 
 router.route("/join").post((req, res) => {
@@ -43,6 +46,15 @@ router.route("/login").post((req, res) => {
           .status(401)
           .json({ error: "이메일 또는 비밀번호가 틀렸습니다." });
       }
+
+      const token = signToken(email);
+      res.cookie("access_token", token, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000,
+        sameSite: "lax",
+        // secure: true,
+      });
+
       return res.status(200).json({ message: "로그인 성공" });
     }
   );

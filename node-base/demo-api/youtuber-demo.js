@@ -29,7 +29,6 @@ app.get("/youtubers/:id", function (req, res) {
 });
 
 app.post("/youtubers", function (req, res) {
-  console.log(req.body);
   const { channelTitle, subScribers, videoNum } = req.body;
 
   const newYoutuber = {
