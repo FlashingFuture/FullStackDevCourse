@@ -2,6 +2,8 @@ import "module-alias/register";
 import express from "express";
 import dotenv from "dotenv";
 import userRouter from "./routes/users";
+import bookRouter from "./routes/books";
+import categoryRouter from "./routes/categories";
 import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
@@ -10,6 +12,8 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use("/users", userRouter);
+app.use("/books", bookRouter);
+app.use("/categories", categoryRouter);
 app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {

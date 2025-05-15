@@ -3,7 +3,6 @@ import * as userController from "./controller";
 
 const router = express.Router();
 
-router.get("/", userController.allBooks);
-router.get("/:booksId", userController.bookDetail)
+router.get("/", userController.allCategory);
 
 export default router;
