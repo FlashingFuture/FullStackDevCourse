@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import { RegisterDto, MessageResponse } from "../types/auth.types";
 import { HTTPError } from "@/utils/httpError";
 import { hashPassword } from "@/utils/password";
-import { prisma } from "@/database/prisma";
+import { getPrisma } from "@/database/prisma";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export const registerUser = async ({
@@ -11,6 +11,8 @@ export const registerUser = async ({
   name,
 }: RegisterDto): Promise<MessageResponse> => {
   const { passwordHash, salt } = hashPassword(password);
+
+  const prisma = getPrisma();
 
   try {
     await prisma.user.create({

@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import { HTTPError } from "@/utils/httpError";
 import { MessageResponse } from "../types/auth.types";
-import { prisma } from "@/database/prisma";
+import { getPrisma } from "@/database/prisma";
 
 export const requestPasswordReset = async (
   email: string
@@ -9,6 +9,8 @@ export const requestPasswordReset = async (
   if (!email) {
     throw new HTTPError(StatusCodes.BAD_REQUEST, "모든 필드를 입력해주세요.");
   }
+
+  const prisma = getPrisma();
 
   const user = await prisma.user.findUnique({
     where: { email },
