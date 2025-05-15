@@ -3,7 +3,8 @@
     "test": "jest",
     "start": "npm run build && node dist/app.js",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node src/app.ts"
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "postinstall": "prisma generate"
   },
   "_moduleAliases": {
     "@": "dist"
