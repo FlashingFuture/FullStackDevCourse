@@ -8,7 +8,7 @@ export const connection = mariadb.createPool({
   port: Number(process.env.DB_PORT),
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: "Bookshop",
+  database: "railway",
   waitForConnections: true,
   connectionLimit: 10,
   dateStrings: true,
