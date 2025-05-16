@@ -3,6 +3,8 @@ import { HTTPError } from "./httpError";
 import { StatusCodes } from "http-status-codes";
 
 export const sendErrorResponse = (res: Response, error: unknown): void => {
+  console.log("[서버 에러]", error);
+
   if (error instanceof HTTPError) {
     res.status(error.statusCode).json({ message: error.message });
     return;
