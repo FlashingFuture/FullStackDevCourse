@@ -4,17 +4,12 @@ import { bookDetail as bookDetailService } from "./service/bookDetail";
 import { StatusCodes } from "http-status-codes";
 
 export const allBooks = async (req: Request, res: Response): Promise<void> => {
-  const categoryId = req.query.categoryId
-    ? Number(req.query.categoryId)
-    : undefined;
-  if (categoryId !== undefined && isNaN(categoryId)) {
-    res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "유효하지 않은 카테고리 ID입니다." });
-    return;
-  }
+  const category = req.query.category as string | undefined;
+  const isNew = req.query.isNew === "true";
+  const offset = parseInt(req.query.offset as string) || 0;
+  const limit = parseInt(req.query.limit as string) || 10;
 
-  const result = await allBooksService(categoryId);
+  const result = await allBooksService(category, isNew, offset, limit);
   res.status(StatusCodes.OK).json(result);
 };
 
@@ -23,13 +18,6 @@ export const bookDetail = async (
   res: Response
 ): Promise<void> => {
   const booksId = Number(req.params.booksId);
-  if (isNaN(booksId)) {
-    res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "유효하지 않은 ID입니다." });
-    return;
-  }
-
   const result = await bookDetailService(booksId);
   res.status(StatusCodes.OK).json(result);
 };
