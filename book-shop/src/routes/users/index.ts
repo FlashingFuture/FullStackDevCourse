@@ -1,25 +1,21 @@
-import express from "express";
-import * as userController from "./controller";
+import { Router } from "express";
 import {
-  registerValidator,
-  loginValidator,
-  requestPasswordResetValidator,
-  applyPasswordResetValidator,
-} from "./validator";
+  register,
+  updateUserProfile,
+  getUserProfile,
+  loginUser,
+} from "./controller/userController";
+import {
+  validateCreateUser,
+  validateUpdateUser,
+  validateLogin,
+} from "./validator/userValidator";
 
-const router = express.Router();
+const router = Router();
 
-router.post("/register", ...registerValidator, userController.registerUser);
-router.post("/login", ...loginValidator, userController.loginUser);
-router.post(
-  "/reset-password/request",
-  ...requestPasswordResetValidator,
-  userController.requestPasswordReset
-);
-router.post(
-  "/reset-password/confirm",
-  ...applyPasswordResetValidator,
-  userController.applyPasswordReset
-);
+router.post("/register", validateCreateUser, register);
+router.post("/login", validateLogin, loginUser);
+router.put("/:id", validateUpdateUser, updateUserProfile);
+router.get("/:id", getUserProfile);
 
 export default router;

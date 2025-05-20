@@ -1,8 +1,20 @@
-import express from "express";
-import * as userController from "./controller";
+import { Router } from "express";
+import {
+  addCategory,
+  updateCategoryDetails,
+  getCategory,
+  getCategories,
+} from "./controller/categoryController";
+import {
+  validateCreateCategory,
+  validateUpdateCategory,
+} from "./validator/categoryValidator";
 
-const router = express.Router();
+const router = Router();
 
-router.get("/", userController.allCategory);
+router.post("/", validateCreateCategory, addCategory);
+router.put("/:id", validateUpdateCategory, updateCategoryDetails);
+router.get("/:id", getCategory);
+router.get("/", getCategories);
 
 export default router;

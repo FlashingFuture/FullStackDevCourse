@@ -47,7 +47,6 @@ export const allBooks = async (
       imageURL: row.image_url,
     }));
 
-    // totalCount 계산
     const countSql = `
       SELECT COUNT(*) as totalCount
       FROM books
