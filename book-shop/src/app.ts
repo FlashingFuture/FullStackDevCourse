@@ -6,6 +6,7 @@ import bookRouter from "./routes/books";
 import categoryRouter from "./routes/categories";
 import likeRouter from "./routes/likes";
 import shoppingCartRouter from "./routes/shoppingCarts";
+import orderRouter from "./routes/orders";
 import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use("/books", bookRouter);
 app.use("/categories", categoryRouter);
 app.use("/likes", likeRouter);
 app.use("/cart", shoppingCartRouter);
+app.use("/orders", orderRouter);
 app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {

@@ -1,10 +1,10 @@
 import express from "express";
-import * as userController from "./controller";
+import * as bookController from "./controller";
 import { validateAllBooks, validateBookDetail } from "./validator";
 
 const router = express.Router();
 
-router.get("/", validateAllBooks, userController.allBooks);
-router.get("/:booksId", validateBookDetail, userController.bookDetail);
+router.get("/", validateAllBooks, bookController.allBooks);
+router.get("/:booksId", validateBookDetail, bookController.bookDetail);
 
 export default router;
